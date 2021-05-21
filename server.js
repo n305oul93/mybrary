@@ -6,6 +6,7 @@ const express = require('express')
 const app = express()
 const PORT = 3000
 const expressLayouts = require('express-ejs-layouts')
+const methodOverride = require('method-override')
 
 const indexRouter = require('./routes/index')
 const authorRouter = require('./routes/authors')
@@ -18,6 +19,7 @@ app.set('layout', 'layouts/layout')
 app.use(express.json())
 app.use(express.urlencoded({ limit: '10mb', extended: false }))
 app.use(expressLayouts)
+app.use(methodOverride('_method'))
 app.use(express.static('public'))
 
 const mongoose = require('mongoose')
